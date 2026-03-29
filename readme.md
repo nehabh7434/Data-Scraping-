@@ -133,12 +133,14 @@ Each factor is weighted independently and the final score is capped between 0.0 
 
 ---
 
-## Sample Output Scores
+
+## Results & Analysis
 
 | Source | Trust Score | Main Factor |
-|---|---|---|
-| IBM (blog) | 0.56 | Named author + recent + high domain |
-| GeeksforGeeks (blog) | 0.55 | Recent date + good content length |
-| PubMed | ~0.55 | High domain + multiple authors |
-| YouTube #1 | 0.08 | No transcript available |
-| YouTube #2 | 0.08 | No transcript available |
+|--------|------------|-------------|
+| IBM – Machine Learning | 0.56 | High domain authority + strong recency + valid author |
+| GeeksforGeeks – ML | 0.58 | Good recency + decent content quality |
+| IBM – Neural Networks | 0.66 | High domain authority + strong recency |
+| YouTube #1 | 0.25 | Low metadata + weak structured content |
+| YouTube #2 | 0.25 | Missing metadata + partial transcript |
+| PubMed Article | 0.65 | High domain authority + multiple authors |
