@@ -87,19 +87,21 @@ Output is saved to `output/final_output.json`.
 
 ```
 Trust Score = author_credibility + citation_count + domain_authority
-            + recency + medical_disclaimer_presence
+            + recency + medical_disclaimer_presence + source_and_content
 ```
 
 Each factor is weighted independently and the final score is capped between 0.0 and 1.0. A full breakdown per factor is stored in `trust_score_breakdown` inside each output entry.
 
-| Factor | Max | Key Logic |
-|---|---|---|
-| Author Credibility | 0.20 | Named person > org name > generic placeholder |
-| Citation Count | 0.20 | From Semantic Scholar API or content inference |
-| Domain Authority | 0.25 | Static lookup table + .edu/.gov bonuses |
-| Recency | 0.20 | Full score ≤1yr, zero >5yrs, extra penalty for old medical |
-| Medical Disclaimer | +0.15 / -0.10 | Only triggers when ≥3 medical keywords found |
+## Trust Scoring Factors
 
+| Factor | Max | Key Logic |
+|--------|-----|----------|
+| Author Credibility | 0.20 | Named person > organization > generic placeholder |
+| Citation Count | 0.20 | From API or inferred via DOI/references in content |
+| Domain Authority | 0.25 | Static lookup + bonuses for .edu / .gov domains |
+| Recency | 0.20 | Full score ≤1 year, decreases over time, penalty for old medical content |
+| Medical Disclaimer | +0.15 / -0.10 | Applied only if ≥3 medical keywords are present |
+| Source & Content Quality | ~0.20 | +0.15 (PubMed), +0.08 (blog/YouTube), +0.05 (>3000 chars), +0.03 (>1000 chars), +0.02 (language detected), −0.05 (short content), −0.05 (missing YouTube transcript) |
 ---
 
 ## Edge Cases Handled
